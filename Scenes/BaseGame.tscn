@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://begiuc350qsj2"]
+[gd_scene load_steps=2 format=3 uid="uid://begiuc350qsj2"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Script" uid="uid://bqoffmq4y3x51" path="res://Scripts/Node scripts/GameController.cs" id="1_j67mf"]
+
+[node name="Game Controller" type="Node3D"]
+script = ExtResource("1_j67mf")
