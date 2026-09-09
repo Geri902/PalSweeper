@@ -31,11 +31,16 @@ public class BasicGameMaster
         initGame();
     }
 
-    public void RegenerateMap()
+    public void RegenerateMap(int width, int height, int mines)
     {
-        rnd.Randomize();
-        GenerateMines();
-        GenerateMap();
+        this.width = width;
+        this.height = height;
+        this.mines = mines;
+
+        map = null;
+        mineLocations = null;
+
+        initGame();
     }
 
     private void initGame()
@@ -52,7 +57,7 @@ public class BasicGameMaster
 
     private void GenerateMines()
     {
-        if (mines < (width * height) - 1) // check if generatable
+        if (mines < (width * height)) // check if generatable
         {
             List<(int x,int y)> allPositions = new List<(int x, int y)>();
 
@@ -66,7 +71,7 @@ public class BasicGameMaster
             
             for (int i = 0; i < mines; i++) // this way we don't need to check for overlapping mines, because they can't exist
             {
-                int position = rnd.RandiRange(0, allPositions.Count);
+                int position = rnd.RandiRange(0, (height * width) - (i + 1));
                 (int x, int y) = allPositions[position];
                 mineLocations[i] = new Vector2I(x, y);
                 allPositions.RemoveAt(position);
@@ -128,6 +133,35 @@ public class BasicGameMaster
             return true;
         }
         return false;
+    }
+
+
+    //these codes are for debugging
+    public void PrintMap()
+    {
+        string output = $"---\nW:{width} H:{height} M:{mines}\n";
+
+        for (int y = 0; y < height; y++) 
+        {
+            for (int x = 0; x < width; x++)
+            {
+                Ground ground = map[x, y];
+                if (ground.GetMine())
+                {
+                    output += "X";
+                }
+                else
+                {
+                    output += $"{ground.GetMinesAround()}";
+                }
+            }
+            if (y != height - 1)
+            {
+                output += "\n";
+            }
+        }
+
+        GD.Print(output);
     }
     
 }

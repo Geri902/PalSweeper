@@ -22,4 +22,14 @@ public class Ground
             return minesAround;
         }
     }
+
+    public bool GetMine()
+    {
+        return mine;
+    }
+
+    public int GetMinesAround()
+    {
+        return minesAround;
+    }
 }
