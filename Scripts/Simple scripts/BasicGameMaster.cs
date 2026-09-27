@@ -22,16 +22,16 @@ public class BasicGameMaster
     int height;
     int mines;
 
-    public BasicGameMaster(int width = 3, int height = 3, int mines = 3)
+    public BasicGameMaster(int width = 3, int height = 3, int mines = 3, int startX = 0, int startY = 0)
     {
         this.width = width;
         this.height = height;
         this.mines = mines;
 
-        initGame();
+        initGame(startX, startY);
     }
 
-    public void RegenerateMap(int width, int height, int mines)
+    public void RegenerateMap(int width, int height, int mines, int startX = 0, int startY = 0)
     {
         this.width = width;
         this.height = height;
@@ -40,22 +40,22 @@ public class BasicGameMaster
         map = null;
         mineLocations = null;
 
-        initGame();
+        initGame(startX, startY);
     }
 
-    private void initGame()
+    private void initGame(int startX, int startY)
     {
         rnd.Randomize();
 
         map = new Ground[width, height];
         mineLocations = new Vector2I[mines];
 
-        GenerateMines();
+        GenerateMines(startX, startY);
         GenerateMap();
 
     }
 
-    private void GenerateMines()
+    private void GenerateMines(int startX, int startY)
     {
         if (mines < (width * height)) // check if generatable
         {
@@ -68,6 +68,8 @@ public class BasicGameMaster
                     allPositions.Add((x, y));
                 }
             }
+
+            allPositions.Remove((startX, startY));
             
             for (int i = 0; i < mines; i++) // this way we don't need to check for overlapping mines, because they can't exist
             {
