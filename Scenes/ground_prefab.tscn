@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://7myqpa7i4d2a"]
+
+[ext_resource type="PackedScene" uid="uid://dy5iei435aug1" path="res://Assets/Blender/Grounf.glb" id="1_8y1go"]
+
+[node name="Grounf" instance=ExtResource("1_8y1go")]
