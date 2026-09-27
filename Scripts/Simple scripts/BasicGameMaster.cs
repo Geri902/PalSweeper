@@ -165,5 +165,10 @@ public class BasicGameMaster
 
         GD.Print(output);
     }
+
+    public (int width, int height) GetSize()
+    {
+        return (width, height);
+    }
     
 }
