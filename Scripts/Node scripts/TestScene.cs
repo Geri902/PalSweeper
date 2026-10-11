@@ -50,7 +50,7 @@ public partial class TestScene : Node3D
 			game.RegenerateMap(width, height, mines);
 		}
 
-		game.PrintMap();
+		//game.PrintMap();
 
 		Ui.Visible = false;
 
@@ -62,15 +62,21 @@ public partial class TestScene : Node3D
 	{
 		(int width, int height) = game.GetSize();
 
-		for (int y = 0; y < height; y++)
+		float posZ = -height + 1;
+		for (int z = 0; z < height; z++)
 		{
+			float posX = -width + 1;
 			for (int x = 0; x < width; x++)
 			{
 				GroundPrefab ground = GroundScene.Instantiate<GroundPrefab>();
-				ground.Position = new Vector3(x*2, 0, y*2);
-				groundMap[x,y] = ground;
+				ground.Position = new Vector3(posX, 0, posZ);
+				groundMap[x,z] = ground;
 				GroundCollection.AddChild(ground);
+
+				GD.Print($"{ground.Position.ToString()}");
+				posX += 2;
 			}
+			posZ += 2;
 		}
 
 	}

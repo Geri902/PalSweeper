@@ -62,7 +62,7 @@ text = "Generate
 "
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7466382, 0.6652303, 0, -0.66523033, 0.7466381, -0.225, 6.847, 6.116)
+transform = Transform3D(1, 0, 0, 0, 0.7466382, 0.6652303, 0, -0.66523033, 0.7466381, 0, 0, 0)
 script = ExtResource("3_8k7wh")
 offset = 3.0
 
