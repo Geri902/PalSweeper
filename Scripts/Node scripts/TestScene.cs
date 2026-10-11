@@ -17,12 +17,17 @@ public partial class TestScene : Node3D
 	CanvasLayer Ui;
 	[Export]
 	Node GroundCollection;
+	[Export]
+	CameraControlls camera;
 	BasicGameMaster game = null;
 	GroundPrefab[,] groundMap;
+	int width;
+	int height;
 	public override void _Ready()
 	{
 		generateButton.ButtonDown += generateGame;
 	}
+
 	public override void _Process(double delta)
 	{
 		
@@ -30,8 +35,8 @@ public partial class TestScene : Node3D
 
 	private void generateGame()
 	{
-		int width = int.Parse(widthLine.Text);
-		int height = int.Parse(heightLine.Text);
+		width = int.Parse(widthLine.Text);
+		height = int.Parse(heightLine.Text);
 		int mines = int.Parse(mineLine.Text);
 
 		groundMap = new GroundPrefab[width,height];
@@ -50,6 +55,7 @@ public partial class TestScene : Node3D
 		Ui.Visible = false;
 
 		GenerateGrid();
+		SetCamera();
 	}
 
 	private void GenerateGrid()
@@ -67,5 +73,11 @@ public partial class TestScene : Node3D
 			}
 		}
 
+	}
+
+	private void SetCamera()
+	{
+		Vector3 center = new Vector3(x: width, y: 0, z: height);
+		camera.SetProperties(width * 2, height * 2, center);
 	}
 }

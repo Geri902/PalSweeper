@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://br8cp16tmq467"]
+[gd_scene load_steps=4 format=3 uid="uid://br8cp16tmq467"]
 
 [ext_resource type="Script" uid="uid://bbpmkqav8yjj6" path="res://Scripts/Node scripts/TestScene.cs" id="1_b5ayd"]
 [ext_resource type="PackedScene" uid="uid://7myqpa7i4d2a" path="res://Scenes/ground_prefab.tscn" id="2_5lt6y"]
+[ext_resource type="Script" uid="uid://brb7ka2omwrin" path="res://Scripts/Node scripts/CameraControlls.cs" id="3_8k7wh"]
 
-[node name="TestScene" type="Node3D" node_paths=PackedStringArray("generateButton", "widthLine", "heightLine", "mineLine", "Ui", "GroundCollection")]
+[node name="TestScene" type="Node3D" node_paths=PackedStringArray("generateButton", "widthLine", "heightLine", "mineLine", "Ui", "GroundCollection", "camera")]
 script = ExtResource("1_b5ayd")
 generateButton = NodePath("UI/Control/Generate")
 widthLine = NodePath("UI/Control/Width")
@@ -12,6 +13,7 @@ mineLine = NodePath("UI/Control/Bombs")
 GroundScene = ExtResource("2_5lt6y")
 Ui = NodePath("UI")
 GroundCollection = NodePath("Grounds")
+camera = NodePath("Camera")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -60,7 +62,9 @@ text = "Generate
 "
 
 [node name="Camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.68621206, 0.7274016, 0, -0.7274016, 0.68621206, 0, 4.471797, 6.116481)
+transform = Transform3D(1, 0, 0, 0, 0.7466382, 0.6652303, 0, -0.66523033, 0.7466381, -0.225, 6.847, 6.116)
+script = ExtResource("3_8k7wh")
+offset = 3.0
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Camera"]
 spot_range = 148.742
